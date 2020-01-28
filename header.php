@@ -63,7 +63,65 @@ do_action( 'flash_before' ); ?>
 	 * flash_before_header hook
 	 */
 	do_action( 'flash_before_header' ); ?>
-
+	<div class="onlymobile allcity">
+		<div class="head">
+			<span>Выберите ваш город</span>
+			<div class="close"></div>
+		</div>
+		<div class="main_allcity">
+			<?php wp_nav_menu( [
+							'theme_location'  => '',
+							'menu'            => 'contacts', 
+							'container_class' => '', 
+							'container_id'    => '',
+							'menu_id'         => '',
+							'echo'            => true,
+							'before'          => '',
+							'after'           => '',
+							'link_before'     => '',
+							'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth'           => 0,
+							'walker'          => '',
+						] ); ?>
+		</div>
+		<div class="foot_allcity">
+			<span>Вашего города нет в списке?</span>
+			<p>Мы работаем по всей стране.<br>(Будет выбран головной офис)</p>
+		</div>
+	</div>
+	<div class="onlymobile main_menu_mobile">
+		<div class="bg"></div>
+		<div class="close"></div>
+		<div class="main_main_menu_mobile">
+			<div class="search-box">
+				<?php get_search_form(); ?>
+			</div>		
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+			<?php wp_nav_menu( [
+							'theme_location'  => '',
+							'menu'            => 'menu1', 
+							'container_class' => '', 
+							'container_id'    => '',
+							'menu_id'         => '',
+							'echo'            => true,
+							'before'          => '',
+							'after'           => '',
+							'link_before'     => '',
+							'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth'           => 0,
+							'walker'          => '',
+						] ); ?>
+			<hr>
+			<button class="btn btn-menu">Задать вопрос</button>
+			<ul class="mobile_menu_lang">
+				<li><a href="ru">RU</a></li>
+				<li><a href="en">EN</a></li>
+			</ul>
+		</div>
+		
+	</div>
 	<header id="masthead" class="site-header" role="banner">
 		<?php
 		if ( get_theme_mod( 'flash_top_header', '1') == '1' ) : ?>
@@ -71,10 +129,23 @@ do_action( 'flash_before' ); ?>
 			<div class="tg-container">
 				<div class="tg-column-wrapper clearfix">
 					<div class="left-content">
-						<?php echo flash_top_header_content( 'flash_top_header_left' ); ?>
 					</div>
 					<div class="right-content">
-						<?php echo flash_top_header_content( 'flash_top_header_right' ); ?>
+						<?php wp_nav_menu( [
+							'theme_location'  => '',
+							'menu'            => 'menu1', 
+							'container_class' => '', 
+							'container_id'    => '',
+							'menu_id'         => '',
+							'echo'            => true,
+							'before'          => '',
+							'after'           => '',
+							'link_before'     => '',
+							'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth'           => 0,
+							'walker'          => '',
+						] ); ?>
 					</div>
 				</div>
 			</div>
@@ -112,8 +183,27 @@ do_action( 'flash_before' ); ?>
 						endif; ?>
 					</div>
 				</div>
+				<nav class="site-navigation main-navigation citys onlymobile" role="navigation">
+						
+						<?php wp_nav_menu( [
+							'theme_location'  => '',
+							'menu'            => 'contacts', 
+							'container_class' => '', 
+							'container_id'    => '',
+							'menu_id'         => '',
+							'echo'            => true,
+							'before'          => '',
+							'after'           => '',
+							'link_before'     => '',
+							'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth'           => 0,
+							'walker'          => '',
+						] ); ?>
+					</nav>
 				<div class="site-navigation-wrapper">
-					<nav id="site-navigation" class="main-navigation" role="navigation">
+					<!-- #site-navigation -->
+					<nav id="site-navigation" class="site-navigation main-navigation" role="navigation">
 						<div class="menu-toggle">
 							<i class="fa fa-bars"></i>
 						</div>
@@ -124,22 +214,6 @@ do_action( 'flash_before' ); ?>
 
 					<?php if ( $logo_position == 'center-logo-below-menu' ): ?>
 						<div class="header-action-container">
-
-							<?php if( ( get_theme_mod( 'flash_header_cart', '' ) !=  '1' ) && class_exists( 'WooCommerce' ) ) :
-							$cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : WC()->cart->get_cart_url();
-							?>
-
-							<div class="cart-wrap">
-								<div class="flash-cart-views">
-									<a href="<?php echo esc_url( $cart_url ); ?>" class="wcmenucart-contents">
-										<i class="fa fa-opencart"></i>
-										<span class="cart-value"><?php echo wp_kses_data ( WC()->cart->get_cart_contents_count() ); ?></span>
-									</a>
-								</div>
-								<?php the_widget( 'WC_Widget_Cart', '' ); ?>
-							</div>
-							<?php endif; ?>
-
 							<?php if( get_theme_mod( 'flash_header_search', '' ) !=  '1' ) : ?>
 							<div class="search-wrap">
 								<div class="search-icon">
@@ -155,24 +229,9 @@ do_action( 'flash_before' ); ?>
 				</div>
 
 				<div class="header-action-container">
-					<?php if( ( get_theme_mod( 'flash_header_cart', '' ) !=  '1' ) && class_exists( 'WooCommerce' ) ) : ?>
-					<div class="cart-wrap">
-						<div class="flash-cart-views">
-
-							<?php $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : WC()->cart->get_cart_url(); ?>
-
-							<a href="<?php echo esc_url( $cart_url ); ?>" class="wcmenucart-contents">
-								<i class="fa fa-opencart"></i>
-								<span class="cart-value"><?php echo wp_kses_data ( WC()->cart->get_cart_contents_count() ); ?></span>
-							</a>
-						</div>
-						<?php the_widget( 'WC_Widget_Cart', '' ); ?>
-					</div>
-					<?php endif; ?>
-
 					<?php if( get_theme_mod( 'flash_header_search', '' ) !=  '1' ) : ?>
-					<div class="search-wrap">
-						<div class="search-icon">
+					<div class="search-wrap ">
+						<div class="search-icon search-submit btn search-btn">
 							<i class="fa fa-search"></i>
 						</div>
 						<div class="search-box">
@@ -181,6 +240,25 @@ do_action( 'flash_before' ); ?>
 					</div>
 					<?php endif; ?>
 				</div>
+				<nav class="site-navigation main-navigation citys pc" role="navigation">
+						
+						<?php wp_nav_menu( [
+							'theme_location'  => '',
+							'menu'            => 'contacts', 
+							'container_class' => '', 
+							'container_id'    => '',
+							'menu_id'         => '',
+							'echo'            => true,
+							'before'          => '',
+							'after'           => '',
+							'link_before'     => '',
+							'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth'           => 0,
+							'walker'          => '',
+						] ); ?>
+					</nav><!-- #site-navigation -->
+				
 			</div>
 		</div>
 	</header><!-- #masthead -->

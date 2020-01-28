@@ -113,7 +113,7 @@
 jQuery( window ).load( function () {
 
 	// Check screen width and if sticky header
-	if ( window.matchMedia( '(max-width: 980px)' ).matches && jQuery( '#masthead-sticky-wrapper' ).length >= 1 ) {
+	if ( window.matchMedia( '(max-width: 768px)' ).matches && jQuery( '#masthead-sticky-wrapper' ).length >= 1 ) {
 
 		// Available viewport height
 		var screenHeight = jQuery( window ).height();
